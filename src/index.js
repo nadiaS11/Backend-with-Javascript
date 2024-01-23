@@ -16,6 +16,9 @@ connectDB()
       console.log("ERRR", error);
       throw error;
     });
+    app.get("/", async (req, res) => {
+      res.send("full backend running");
+    });
 
     app.listen(process.env.PORT || 7000, () => {
       console.log("Server is running at port: ", process.env.PORT);

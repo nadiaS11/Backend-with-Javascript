@@ -53,7 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
   if (ifUserExist) {
     throw new ApiError(409, "User with same email or username already exists");
   }
-
+  console.log(req.files);
   const avatarLocalPath = req.files?.avatar[0]?.path;
   const coverLocalPath = req.files?.coverImage[0]?.path;
 
@@ -70,7 +70,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const newUser = await User.create({
     fullName,
-    avatar: avatar.url,
+    avatar: avatar?.url || "",
     coverImage: coverImage?.url || "",
     email,
     password,
